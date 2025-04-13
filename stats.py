@@ -11,3 +11,13 @@ def get_book_text():
     with open("books/frankenstein.txt") as f:
       file_contents = f.read()
     return file_contents
+
+def get_char_count():
+    text = get_book_text().lower()
+    char_count = {}
+    for char in text:
+        if char in char_count:
+            char_count[char] += 1
+        else:
+            char_count[char] = 1
+    return char_count
