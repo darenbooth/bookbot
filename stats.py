@@ -21,3 +21,13 @@ def get_char_count():
         else:
             char_count[char] = 1
     return char_count
+
+def sort_on(dict):
+    return dict["count"]
+
+def sort_dict(char_count_dict):
+    dict_list = []
+    for char, count in char_count_dict.items():
+        dict_list.append({"character": char, "count": count})
+    dict_list.sort(reverse=True, key=sort_on)
+    return dict_list
