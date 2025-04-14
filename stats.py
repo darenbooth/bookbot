@@ -1,33 +1,33 @@
-def get_num_words():
-    text = get_book_text()
-    words = text.split()
-    word_count = 0
-    for word in words:
-        if word:
-            word_count += 1
-    print(f"{word_count} words found in the document")
-
 def get_book_text():
     with open("books/frankenstein.txt") as f:
-      file_contents = f.read()
+        file_contents = f.read()
     return file_contents
 
-def get_char_count():
-    text = get_book_text().lower()
-    char_count = {}
-    for char in text:
-        if char in char_count:
-            char_count[char] += 1
-        else:
-            char_count[char] = 1
-    return char_count
+def text_to_num_words():
+    word_count = 0
+    book_text = get_book_text()
+    words = book_text.split()
+    for word in words:
+        word_count += 1
+    return word_count
 
-def sort_on(dict):
+def text_to_num_chars():
+    char_count_dict = {}
+    chars = get_book_text().lower()
+    for char in chars:
+        if char in char_count_dict:
+            char_count_dict[char] += 1
+        else:
+            char_count_dict[char] = 1
+    return char_count_dict
+
+def sort_dict(dict):
     return dict["count"]
 
-def sort_dict(char_count_dict):
-    dict_list = []
+def char_dict_to_sorted_dict_list():
+    char_count_dict = text_to_num_chars()
+    sorted_list_dict = []
     for char, count in char_count_dict.items():
-        dict_list.append({"character": char, "count": count})
-    dict_list.sort(reverse=True, key=sort_on)
-    return dict_list
+        sorted_list_dict.append({"character": char, "count": count})
+    sorted_list_dict.sort(reverse=True, key=sort_dict)
+    return sorted_list_dict
